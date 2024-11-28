@@ -11,9 +11,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                "white": "[#FFFFFF]",
-                "black": "[#000000]",
-                "garbage2": "garbage1"
+
             },
         },
     },
