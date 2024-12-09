@@ -2,7 +2,7 @@ import { JsxAttribute, ObjectLiteralExpression, Project, PropertyAssignment, ts 
 import * as readline from 'readline';
 console.log("hello Stephen")
 const project = new Project({
-    tsConfigFilePath:"/workspaces/typescript-refactor/refactor-cli/cs842website/tsconfig.json",
+    tsConfigFilePath:"/workspaces/typescript-refactor/cs842website/tsconfig.json",
 })
 const sourceFiles = project.getSourceFiles()
 const colorCount = new Map()
@@ -44,7 +44,7 @@ const processColours = async () => {
         let answer = await askQuestion('Do you want to translate this colour? (y/n): ')
         if (answer === 'y') {
             let translation = await askQuestion('What should this colour be translated to? ')
-            while (Array.from(colourTranslation.values()).includes(translation) && (answer === 'y') {
+            while (Array.from(colourTranslation.values()).includes(translation) && (answer === 'y')) {
                 console.log('This translation already exists. Please try again.')
                 answer = await askQuestion('Do you want to translate this colour? (y/n): ')
                 if (answer === 'y') 
@@ -67,7 +67,7 @@ function configAddProp(obj: ObjectLiteralExpression, identifier: string): Proper
     return obj.addPropertyAssignment({name: identifier, initializer: "{\n},"})
 }
 const updateConfig = async () => {
-    const config = project.getSourceFile("/workspaces/typescript-refactor/refactor-cli/cs842website/tailwind.config.ts")
+    const config = project.getSourceFile("/workspaces/typescript-refactor/cs842website/tailwind.config.ts")
     const exportHead = config?.getFirstChildByKind(ts.SyntaxKind.ExportAssignment)?.getFirstDescendantByKind(ts.SyntaxKind.ObjectLiteralExpression)
     let theme = exportHead?.getChildrenOfKind(ts.SyntaxKind.PropertyAssignment).filter(j=>j.getFirstChildByKind(ts.SyntaxKind.Identifier)?.getText()==="theme")?.[0]
     if (!theme){
@@ -86,9 +86,11 @@ const updateConfig = async () => {
     }
 
     const spot = colors.getFirstDescendantByKind(ts.SyntaxKind.ObjectLiteralExpression)
-    for(const [key, value] of colourTranslation)
+    for(const [key, value] of colourTranslation) {
+        let colourHex = key.replace(/[\[\]]/g, '') //removing the square brackets
         if (spot?.getDescendants().filter(j=>j.getText()===`"${value}"`).length===0)
-            spot?.addPropertyAssignment({name:`"${value}"`,initializer:`"${key}"`})
+            spot?.addPropertyAssignment({name:`"${value}"`,initializer:`"${colourHex}"`})
+    }
     console.log(theme.getText())
     await config!.save()    
 }
