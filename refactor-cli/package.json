@@ -1,5 +1,5 @@
 {
-  "type":"module",
+  "type": "module",
   "name": "typescript-refactor",
   "version": "1.0.0",
   "license": "UNLICENSED",
@@ -11,6 +11,7 @@
     "start": "tsx index.ts"
   },
   "devDependencies": {
+    "@types/node": "^22.10.1",
     "typescript": "^5.6.3"
   }
 }
