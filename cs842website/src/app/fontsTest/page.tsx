@@ -18,10 +18,6 @@ export default function Home() {
             
             <p className="font-['Times_New_Roman',Times,serif]">This is Times New Roman, Times, serif font family.</p>
             
-            <p style={{ color: '#FF00FF' }}>This is magenta text.</p>
-            <p style={{ color: '#00FFFF' }}>This is cyan text.</p>
-            <p style={{ color: '#000000' }}>This is black text.</p>
-            <p style={{ color: '#FFFFFF', backgroundColor: '#000000' }}>This is white text with a black background.</p>
         </div>
     );
 }

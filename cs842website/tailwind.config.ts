@@ -10,8 +10,6 @@ export default {
   plugins: [],
     theme: {
         extend: {
-            colors: {
-            },
         },
     },
 } satisfies Config;

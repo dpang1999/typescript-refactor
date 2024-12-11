@@ -17,7 +17,7 @@ export default function Home() {
 
             {/* Yellow is  FFFF00 */}
             <p className="text-[#FFFF00]">This is yellow text. Defined using #FFFF00</p>
-            <p style={{ color: 'green' }}>This is yellow text. Defined using `yellow`</p>
+            <p style={{ color: 'yellow' }}>This is yellow text. Defined using `yellow`</p>
             
             <p className="text-[#383838]">This is very dark gray text. Defined using #383838.</p>
             
